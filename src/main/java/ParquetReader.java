@@ -12,7 +12,9 @@ public class ParquetReader {
         Path path = new Path("browser_test.parquet");
         AvroParquetReader<GenericRecord> reader = new AvroParquetReader<GenericRecord>(path);
 //        AvroParquetReader<GenericRecord> reader = AvroParquetReader.<GenericRecord>builder(path).build();
-        GenericRecord next = reader.read();
-        System.out.println(next);
+        GenericRecord next = null;
+        while ((next = reader.read()) != null) {
+            System.out.println(next);
+        }
     }
 }
